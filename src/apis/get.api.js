@@ -1,9 +1,11 @@
 import axiosInstance from "../configs/axiosInstance";
 
 const GetSewa = {
-  async allSewa(name) {
+  async allSewa(name, page) {
     try {
-      const response = await axiosInstance.get(`sewas?keyword=${name}`);
+      const response = await axiosInstance.get(
+        `sewas?page=${page}&keyword=${name}`
+      );
       return response;
     } catch (error) {
       console.log("error");
@@ -12,6 +14,14 @@ const GetSewa = {
   async Rekomendasi() {
     try {
       const response = await axiosInstance.get("rekomendasi");
+      return response;
+    } catch (error) {
+      console.log("error");
+    }
+  },
+  async users() {
+    try {
+      const response = await axiosInstance.get("users");
       return response;
     } catch (error) {
       console.log("error");

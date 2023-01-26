@@ -1,8 +1,8 @@
 import React from "react";
 import fast from "../../assets/fast.png";
-import trust from "../../assets/trust.png";
-import trophy from "../../assets/trophy.png";
 import loss from "../../assets/loss.png";
+import trophy from "../../assets/trophy.png";
+import trust from "../../assets/trust.png";
 function Slogan() {
   return (
     <div className="content ">

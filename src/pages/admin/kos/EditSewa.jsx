@@ -1,14 +1,16 @@
-import { Checkbox, Label, Modal, Select, TextInput } from "flowbite-react";
-import { MdAddPhotoAlternate } from "react-icons/md";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { Checkbox, Label, Select, TextInput } from "flowbite-react";
 import { useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
+import { MdAddPhotoAlternate } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
 import PostSewa from "../../../apis/post.api";
 import { storage } from "../../../configs/firebase";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { v4 } from "uuid";
-import { useLocation } from "react-router-dom";
 
 function EditSewa() {
   let location = useLocation();
+  let navigate = useNavigate();
   const {
     id,
     kate_id,
@@ -103,294 +105,307 @@ function EditSewa() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    PostSewa.editSewa(form).then((res) => console.log(res.data));
+    PostSewa.editSewa(form).then((res) => {
+      toast.success(res.data.message, {
+        duration: 400,
+      });
+      setTimeout(() => {
+        navigate("/admin/sewaAdmin");
+      }, 1500);
+    });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex w-full gap-x-2">
-        <div className="w-[33%] ">
-          <div>
-            <div className="mb-1 block">
-              <Label value="Nama" />
-            </div>
-            <TextInput
-              type="text"
-              name="name"
-              placeholder="nama"
-              onChange={onChange}
-              value={form.name}
-            />
-          </div>
-          <div>
-            <div className="mb-1 block">
-              <Label value="Deskripsi" />
-            </div>
-            <TextInput
-              type="text"
-              placeholder="deskripsi"
-              name="deskripsi"
-              onChange={onChange}
-              value={form.deskripsi}
-            />
-          </div>
-          <div>
-            <div id="select">
-              <div className="mb-1 block">
-                <Label htmlFor="countries" value="type" />
-              </div>
-              <Select
-                defaultValue={form.kate_id}
-                onChange={onChange}
-                name="kate_id"
-                id=""
-              >
-                <option value="1">Kontrakan</option>
-                <option value="2">Kos</option>
-                <option value="3">Ruko</option>
-              </Select>
-            </div>
-          </div>
-          <div className="flex gap-x-2">
+    <>
+      <Toaster />
+      <form onSubmit={handleSubmit}>
+        <div className="flex w-full gap-x-2">
+          <div className="w-[33%] ">
             <div>
               <div className="mb-1 block">
-                <Label value="lantai" />
+                <Label value="Nama" />
               </div>
               <TextInput
                 type="text"
-                name="lantai"
-                placeholder="Lantai"
-                defaultValue={form.lantai}
+                name="name"
+                placeholder="nama"
                 onChange={onChange}
+                value={form.name}
               />
             </div>
             <div>
               <div className="mb-1 block">
-                <Label value="Garasi" />
+                <Label value="Deskripsi" />
               </div>
               <TextInput
                 type="text"
-                name="garasi"
-                defaultValue={form.garasi}
-                placeholder="Garasi"
+                placeholder="deskripsi"
+                name="deskripsi"
                 onChange={onChange}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="w-[33%] ">
-          <div>
-            <div className="mb-1 block">
-              <Label value="Harga" />
-            </div>
-            <TextInput
-              type="number"
-              placeholder="harga"
-              onChange={onChange}
-              defaultValue={form.harga}
-              name="harga"
-            />
-          </div>
-          <div>
-            <div className="mb-1 block">
-              <Label value="link video" />
-            </div>
-            <TextInput
-              type="text"
-              name="link_video"
-              placeholder="link video"
-              defaultValue={form.link_video}
-              onChange={onChange}
-            />
-          </div>
-          <div className="">
-            <div>
-              <div className="mb-1 block">
-                <Label value="luas" />
-              </div>
-              <TextInput
-                type="text"
-                name="luas"
-                placeholder="luas"
-                onChange={onChange}
-                defaultValue={form.luas}
-              />
-            </div>
-          </div>
-          <div className="flex gap-x-2">
-            <div>
-              <div className="mb-1 block">
-                <Label value="ac" />
-              </div>
-              <TextInput
-                type="text"
-                name="ac"
-                placeholder="ac"
-                defaultValue={form.ac}
-                onChange={onChange}
+                value={form.deskripsi}
               />
             </div>
             <div>
-              <div className="mb-1 block">
-                <Label value="wifi" />
+              <div id="select">
+                <div className="mb-1 block">
+                  <Label htmlFor="countries" value="type" />
+                </div>
+                <Select
+                  defaultValue={form.kate_id}
+                  onChange={onChange}
+                  name="kate_id"
+                  id=""
+                >
+                  <option value="1">Kontrakan</option>
+                  <option value="2">Kos</option>
+                  <option value="3">Ruko</option>
+                </Select>
               </div>
-              <TextInput
-                type="text"
-                name="wifi"
-                placeholder="wifi"
-                onChange={onChange}
-                defaultValue={form.wifi}
-              />
+            </div>
+            <div className="flex gap-x-2">
+              <div>
+                <div className="mb-1 block">
+                  <Label value="lantai" />
+                </div>
+                <TextInput
+                  type="text"
+                  name="lantai"
+                  placeholder="Lantai"
+                  defaultValue={form.lantai}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <div className="mb-1 block">
+                  <Label value="Garasi" />
+                </div>
+                <TextInput
+                  type="text"
+                  name="garasi"
+                  defaultValue={form.garasi}
+                  placeholder="Garasi"
+                  onChange={onChange}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-[33%] ">
-          <div>
-            <div className="mb-1 block">
-              <Label value="alamat" />
-            </div>
-            <TextInput
-              name="alamat"
-              type="text"
-              placeholder="alamat"
-              onChange={onChange}
-              defaultValue={form.alamat}
-            />
-          </div>
-          <div>
-            <div className="mb-1 block">
-              <Label value="link alamat" />
-            </div>
-            <TextInput
-              type="text"
-              placeholder="link alamat"
-              onChange={onChange}
-              defaultValue={form.link_alamat}
-              name="link_alamat"
-            />
-          </div>
-          <div className="flex gap-x-2">
+          <div className="w-[33%] ">
             <div>
               <div className="mb-1 block">
-                <Label value="kamar mandi" />
+                <Label value="Harga" />
               </div>
               <TextInput
-                type="text"
-                name="kmandi"
-                placeholder="kamar mandi"
-                defaultValue={form.kmandi}
+                type="number"
+                placeholder="harga"
                 onChange={onChange}
+                defaultValue={form.harga}
+                name="harga"
               />
             </div>
             <div>
               <div className="mb-1 block">
-                <Label value="kamar" />
+                <Label value="link video" />
               </div>
               <TextInput
                 type="text"
-                name="kamar"
-                placeholder="kamar"
+                name="link_video"
+                placeholder="link video"
+                defaultValue={form.link_video}
                 onChange={onChange}
-                defaultValue={form.kamar}
               />
             </div>
-          </div>
-          <div className="">
-            <div className="mb-1 block">
-              <Label value="Pilih" />
+            <div className="">
+              <div>
+                <div className="mb-1 block">
+                  <Label value="luas" />
+                </div>
+                <TextInput
+                  type="text"
+                  name="luas"
+                  placeholder="luas"
+                  onChange={onChange}
+                  defaultValue={form.luas}
+                />
+              </div>
             </div>
-            <div className="flex borders gap-x-2">
-              <div className="flex flex-col gap-4" id="checkbox">
-                <div className="flex items-center gap-2">
-                  <Checkbox
-                    defaultValue={form.tersedia}
-                    id="accept"
-                    name="tersedia"
-                    type="checkbox"
-                    onChange={onChange}
-                  />
-                  <Label htmlFor="accept">tersedia</Label>
+            <div className="flex gap-x-2">
+              <div>
+                <div className="mb-1 block">
+                  <Label value="ac" />
+                </div>
+                <TextInput
+                  type="text"
+                  name="ac"
+                  placeholder="ac"
+                  defaultValue={form.ac}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <div className="mb-1 block">
+                  <Label value="wifi" />
+                </div>
+                <TextInput
+                  type="text"
+                  name="wifi"
+                  placeholder="wifi"
+                  onChange={onChange}
+                  defaultValue={form.wifi}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-[33%] ">
+            <div>
+              <div className="mb-1 block">
+                <Label value="alamat" />
+              </div>
+              <TextInput
+                name="alamat"
+                type="text"
+                placeholder="alamat"
+                onChange={onChange}
+                defaultValue={form.alamat}
+              />
+            </div>
+            <div>
+              <div className="mb-1 block">
+                <Label value="link alamat" />
+              </div>
+              <TextInput
+                type="text"
+                placeholder="link alamat"
+                onChange={onChange}
+                defaultValue={form.link_alamat}
+                name="link_alamat"
+              />
+            </div>
+            <div className="flex gap-x-2">
+              <div>
+                <div className="mb-1 block">
+                  <Label value="kamar mandi" />
+                </div>
+                <TextInput
+                  type="text"
+                  name="kmandi"
+                  placeholder="kamar mandi"
+                  defaultValue={form.kmandi}
+                  onChange={onChange}
+                />
+              </div>
+              <div>
+                <div className="mb-1 block">
+                  <Label value="kamar" />
+                </div>
+                <TextInput
+                  type="text"
+                  name="kamar"
+                  placeholder="kamar"
+                  onChange={onChange}
+                  defaultValue={form.kamar}
+                />
+              </div>
+            </div>
+            <div className="">
+              <div className="mb-1 block">
+                <Label value="Pilih" />
+              </div>
+              <div className="flex  gap-x-2">
+                <div className="flex flex-col gap-4" id="checkbox">
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      defaultChecked={form.tersedia == 0 ? false : true}
+                      id="accept"
+                      name="tersedia"
+                      type="checkbox"
+                      onChange={onChange}
+                    />
+                    <Label htmlFor="accept">tersedia</Label>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4" id="checkbox">
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      id="accept"
+                      name="rekomendasi"
+                      defaultChecked={form.rekomendasi == 0 ? false : true}
+                      type="checkbox"
+                      onChange={onChange}
+                    />
+                    <Label htmlFor="accept">Rekomendasi</Label>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-4" id="checkbox">
-                <div className="flex items-center gap-2">
-                  <Checkbox
-                    id="accept"
-                    name="rekomendasi"
-                    defaultValue={form.rekomendasi}
-                    type="checkbox"
-                    onChange={onChange}
-                  />
-                  <Label htmlFor="accept">Rekomendasi</Label>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="w-full mt-3 h-44 borders flex justify-between  ">
-        <div className="w-[33%] border h-full relative  flex  justify-center items-center">
-          <input
-            className="w-full opacity-0 absolute h-full cursor-pointer borders"
-            type="file"
-            name=""
-            onChange={handleImage1}
-            id=""
-            multiple
-          />
-          {form.foto1 ? (
-            <>
-              <img className=" h-full" src={form.foto1} alt="" />
-            </>
-          ) : (
-            <>
-              <MdAddPhotoAlternate className="text-7xl " />
-            </>
-          )}
+        <div className="w-full mt-3 h-44 borders flex justify-between  ">
+          <div className="w-[33%] border h-full relative  flex  justify-center items-center">
+            <input
+              className="w-full opacity-0 absolute h-full cursor-pointer borders"
+              type="file"
+              name=""
+              onChange={handleImage1}
+              id=""
+              multiple
+            />
+            {form.foto1 ? (
+              <>
+                <img className=" h-full" src={form.foto1} alt="" />
+              </>
+            ) : (
+              <>
+                <MdAddPhotoAlternate className="text-7xl " />
+              </>
+            )}
+          </div>
+          <div className="w-[33%] border h-full relative  flex  justify-center items-center">
+            <input
+              className="w-full opacity-0 absolute h-full cursor-pointer borders"
+              type="file"
+              onChange={handleImage2}
+              name=""
+              id=""
+            />
+            {form.foto2 ? (
+              <>
+                <img className=" h-full" src={form.foto2} alt="" />
+              </>
+            ) : (
+              <>
+                <MdAddPhotoAlternate className="text-7xl " />
+              </>
+            )}
+          </div>
+          <div className="w-[33%] border h-full relative  flex  justify-center items-center">
+            <input
+              className="w-full opacity-0 absolute h-full cursor-pointer borders"
+              type="file"
+              onChange={handleImage3}
+              name=""
+              id=""
+            />
+            {form.foto3 ? (
+              <>
+                <img className=" h-full" src={form.foto3} alt="" />
+              </>
+            ) : (
+              <>
+                <MdAddPhotoAlternate className="text-7xl " />
+              </>
+            )}
+          </div>
         </div>
-        <div className="w-[33%] border h-full relative  flex  justify-center items-center">
-          <input
-            className="w-full opacity-0 absolute h-full cursor-pointer borders"
-            type="file"
-            onChange={handleImage2}
-            name=""
-            id=""
-          />
-          {form.foto2 ? (
-            <>
-              <img className=" h-full" src={form.foto2} alt="" />
-            </>
-          ) : (
-            <>
-              <MdAddPhotoAlternate className="text-7xl " />
-            </>
-          )}
+        <div className="flex justify-center gap-x-5 w-full mt-5">
+          <button className="btnbase w-44 hover:text-white">Simpan</button>
+          <label
+            onClick={() => navigate("/admin/sewaAdmin")}
+            className="btnbasex text-center w-44 cursor-pointer hover:text-white"
+          >
+            Batal
+          </label>
         </div>
-        <div className="w-[33%] border h-full relative  flex  justify-center items-center">
-          <input
-            className="w-full opacity-0 absolute h-full cursor-pointer borders"
-            type="file"
-            onChange={handleImage3}
-            name=""
-            id=""
-          />
-          {form.foto3 ? (
-            <>
-              <img className=" h-full" src={form.foto3} alt="" />
-            </>
-          ) : (
-            <>
-              <MdAddPhotoAlternate className="text-7xl " />
-            </>
-          )}
-        </div>
-      </div>
-      <div className="flex justify-center gap-x-5 w-full mt-5">
-        <button className="btnbase w-44 hover:text-white">Simpan</button>
-        <label className="btnbasex text-center w-44 cursor-pointer hover:text-white">
-          Batal
-        </label>
-      </div>
-    </form>
+      </form>
+    </>
   );
 }
 

@@ -2,9 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Dashboard } from "../pages/admin/Dashboard";
 import EditSewa from "../pages/admin/kos/EditSewa";
-import { KosAdmin, SewaAdmin } from "../pages/admin/kos/SewaAdmin";
-import LayoutAdmin from "../pages/admin/LayoutAdmin";
-import RukoAdmin from "../pages/admin/ruko/RukoAdmin";
+import { SewaAdmin } from "../pages/admin/kos/SewaAdmin";
+import User from "../pages/admin/User";
 import { Daftar } from "../pages/Daftar";
 import LayoutUser from "../pages/LayoutUser";
 import { Login } from "../pages/Login";
@@ -37,6 +36,7 @@ function SetUpRouter() {
             <Route index element={<Dashboard />} />
             <Route path="sewaAdmin" element={<SewaAdmin />} />
             <Route path="edit/:id" element={<EditSewa />} />
+            <Route path="users" element={<User />} />
             {/* <Route path="rukoAdmin" element={<RukoAdmin />} /> */}
           </Route>
           <Route path="/login" element={<Login />} />

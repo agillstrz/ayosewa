@@ -1,11 +1,8 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import GetSewa from "../../apis/get.api";
 import { Card } from "../../components/Card";
 import { HeroKontrakan } from "../../components/HeroKontrakan";
-import datas from "../../mockup/dataRumah";
 export const Kontrakan = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();

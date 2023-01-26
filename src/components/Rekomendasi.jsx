@@ -29,7 +29,7 @@ function Rekomendasi() {
           // install Swiper modules
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={50}
-          slidesPerView={4}
+          slidesPerView={3}
         >
           {data &&
             data?.map((m) => (

@@ -20,6 +20,14 @@ const PostSewa = {
       console.log("error");
     }
   },
+  async deleteWish(id) {
+    try {
+      const response = await axiosInstance.delete(`wish/${id}`);
+      return response;
+    } catch (error) {
+      console.log("error");
+    }
+  },
   async addSewa(payload) {
     try {
       const {

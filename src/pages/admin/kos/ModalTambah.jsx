@@ -1,11 +1,10 @@
-import React from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { Checkbox, Label, Modal, Select, TextInput } from "flowbite-react";
+import React, { useState } from "react";
 import { MdAddPhotoAlternate } from "react-icons/md";
-import { useState } from "react";
+import { v4 } from "uuid";
 import PostSewa from "../../../apis/post.api";
 import { storage } from "../../../configs/firebase";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { v4 } from "uuid";
 function ModalTambah({ show, close, setShow, setMessage }) {
   const [form, setForm] = useState({
     kate_id: 1,
@@ -267,7 +266,7 @@ function ModalTambah({ show, close, setShow, setMessage }) {
                   <div className="mb-1 block">
                     <Label value="Pilih" />
                   </div>
-                  <div className="flex borders gap-x-2">
+                  <div className="flex  gap-x-2">
                     <div className="flex flex-col gap-4" id="checkbox">
                       <div className="flex items-center gap-2">
                         <Checkbox

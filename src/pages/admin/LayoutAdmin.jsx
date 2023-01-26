@@ -11,7 +11,7 @@ function LayoutAdmin() {
           <nav className="border w-full px-5">
             <ul className="flex py-3 w-full justify-end">
               <li className="flex flex-col">
-                <p>Muhammad Agil</p>
+                <p>Admin Login</p>
                 <span className="text-[12px] opacity-90">Admin</span>
               </li>
             </ul>

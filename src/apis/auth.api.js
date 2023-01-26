@@ -16,7 +16,7 @@ const APIAuth = {
       throw new Error(message);
     }
   },
-  async loginUser(payload) {
+  async login(payload) {
     try {
       const { email, password } = payload;
 

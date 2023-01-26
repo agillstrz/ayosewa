@@ -1,22 +1,21 @@
 import React, { useState } from "react";
+import { IoIosArrowDropright } from "react-icons/io";
 import Hero from "../../components/Hero";
 import Rekomendasi from "../../components/Rekomendasi";
 import Slogan from "./Slogan";
-import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
-import { Footer } from "flowbite-react";
-import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosArrowDropdown, IoIosArrowDropright } from "react-icons/io";
 export const Home = () => {
   const [show, setShow] = useState({
     satu: false,
     dua: false,
+    tiga: false,
+    empat: false,
   });
   return (
     <div>
       <Hero />
       <Rekomendasi />
       <Slogan />
-      <div className="content my-5 h-screen">
+      <div className="content my-5">
         <h2 className="text-3xl text-center font-bold text-color2 my-2 ">
           Hal yang sering di <span className="text-yellow">tanyakan</span>
         </h2>
@@ -73,6 +72,57 @@ export const Home = () => {
                   Tidak ada, semua harga yang tertera merupakan harga yang
                   bersifat tetap dan tidak dapat diubah lagi
                 </p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-base2 rounded-3xl shadow-lg  w-full py-3 transition-all duration-150 ease-in">
+            <div className="flex  flex-col h-full pb-2 relative justify-center items-center ">
+              <p className="text-2xl font-bold">
+                Apakah boleh jika ingin sewa per tahun ?
+              </p>
+              <span
+                onClick={() => setShow({ tiga: !show.tiga })}
+                className={`${
+                  show.tiga ? "rotate-90 text-yellow" : ""
+                } absolute right-0 mx-5  transition-all duration-150 ease-linear cursor-pointer`}
+              >
+                <IoIosArrowDropright className="text-4xl " />
+              </span>
+            </div>
+            <div
+              className={`${
+                show.tiga ? "" : "hidden"
+              } flex   px-5 items-center w-full justify-center `}
+            >
+              <div className="w-1/2">
+                <p className="text-lg text-center">
+                  Boleh, untuk lebih detail bisa tanyakan pada kontak yang
+                  tertera
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-base2 rounded-3xl shadow-lg  w-full py-3 transition-all duration-150 ease-in">
+            <div className="flex  flex-col h-full pb-2 relative justify-center items-center ">
+              <p className="text-2xl font-bold">
+                Apakah untuk menyewa dikenakan pajak ?
+              </p>
+              <span
+                onClick={() => setShow({ empat: !show.empat })}
+                className={`${
+                  show.empat ? "rotate-90 text-yellow" : ""
+                } absolute right-0 mx-5  transition-all duration-150 ease-linear cursor-pointer`}
+              >
+                <IoIosArrowDropright className="text-4xl " />
+              </span>
+            </div>
+            <div
+              className={`${
+                show.empat ? "" : "hidden"
+              } flex   px-5 items-center w-full justify-center `}
+            >
+              <div className="w-1/2">
+                <p className="text-lg text-center">Tidak</p>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo1.png";
+import logo from "../assets/ayosewa.png";
 
 function Footers() {
   return (
@@ -10,8 +10,8 @@ function Footers() {
           className="flex items-center mb-4 sm:mb-0"
         >
           <img src={logo} className="h-8 mr-3" alt="Flowbite Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-            ayoSewa
+          <span className="self-center text-2xl text-color2 font-semibold whitespace-nowrap ">
+            ayo<span className="text-yellow">Sewa</span>
           </span>
         </a>
         <ul className="flex flex-wrap items-center mb-6 text-sm sm:mb-0 ">

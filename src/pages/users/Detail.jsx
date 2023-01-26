@@ -2,9 +2,8 @@ import { FormatRupiah } from "@arismun/format-rupiah";
 import { Avatar, TextInput } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { AiOutlineWhatsApp } from "react-icons/ai";
-import { FaBath, FaBed, FaPlay, FaWifi } from "react-icons/fa";
+import { FaBath, FaPlay, FaWifi } from "react-icons/fa";
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import { SiAirtable } from "react-icons/si";
 import { VscLocation } from "react-icons/vsc";
 import { useParams } from "react-router-dom";
 import SEWA from "../../apis/get.api";
@@ -126,42 +125,60 @@ export const Detail = () => {
                       Fasilitas Kontrakan
                     </h4>
                     <div className="flex w-full flex-wrap gap-y-1  gap-x-2">
-                      <div className="cardF">
-                        <p className="text-color1/80">Kamar Mandi</p>
-                        <div className="flex gap-x-2 text-md items-center">
-                          <FaBath />
-                          <span>3</span>
+                      {data.kmandi && (
+                        <div className="cardF">
+                          <p className="text-color1/80">Kamar Mandi</p>
+                          <div className="flex gap-x-2 text-md items-center">
+                            <FaBath />
+                            <span> {data.kmandi}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="cardF">
-                        <p className="text-color1/80">Wifi</p>
-                        <div className="flex gap-x-2 text-md items-center">
-                          <FaWifi />
-                          <span>3</span>
+                      )}
+                      {data.wifi && (
+                        <div className="cardF">
+                          <p className="text-color1/80">Wifi</p>
+                          <div className="flex gap-x-2 text-md items-center">
+                            <FaWifi />
+                            <span>{data.wifi}</span>
+                          </div>
                         </div>
-                      </div>
-
-                      <div className="cardF">
-                        <p className="text-color1/80">Kamar Tidur</p>
-                        <div className="flex gap-x-2 text-md items-center">
-                          <FaBed />
-                          <span>1</span>
+                      )}
+                      {data.kamar && (
+                        <div className="cardF">
+                          <p className="text-color1/80">kamar</p>
+                          <div className="flex gap-x-2 text-md items-center">
+                            <FaWifi />
+                            <span>{data.kamar}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="cardF">
-                        <p className="text-color1/80">Meja</p>
-                        <div className="flex gap-x-2 text-md items-center">
-                          <SiAirtable />
-                          <span>1</span>
+                      )}
+                      {data.ac && (
+                        <div className="cardF">
+                          <p className="text-color1/80">ac</p>
+                          <div className="flex gap-x-2 text-md items-center">
+                            <FaWifi />
+                            <span>{data.ac}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="cardF">
-                        <p className="text-color1/80">Meja</p>
-                        <div className="flex gap-x-2 text-md items-center">
-                          <SiAirtable />
-                          <span>1</span>
+                      )}
+                      {data.garasi && (
+                        <div className="cardF">
+                          <p className="text-color1/80">garasi</p>
+                          <div className="flex gap-x-2 text-md items-center">
+                            <FaWifi />
+                            <span>{data.garasi}</span>
+                          </div>
                         </div>
-                      </div>
+                      )}
+                      {data.lantai && (
+                        <div className="cardF">
+                          <p className="text-color1/80">lantai</p>
+                          <div className="flex gap-x-2 text-md items-center">
+                            <FaWifi />
+                            <span>{data.lantai}</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -16,8 +16,7 @@ const Auth = {
   },
   signOut(navigate) {
     Cookies.remove("token");
-    Cookies.remove("rt");
-    Cookies.remove("data");
+    Cookies.remove("role_as");
     navigate("/login");
   },
   storeUserInfoToCookie(datas) {

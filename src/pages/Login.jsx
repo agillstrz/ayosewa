@@ -1,14 +1,21 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { TiArrowBack } from "react-icons/ti";
 import APIAuth from "../apis/auth.api";
-import foto from "../assets/hero1.png";
+import foto from "../assets/login.jpg";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import logo from "../assets/ayosewa.png";
 export const Login = () => {
   let navigate = useNavigate();
+  let location = useLocation();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [btn, setBtn] = useState(false);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -20,20 +27,39 @@ export const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    APIAuth.loginUser(form).then(
-      (res) => res.status == 200 && navigate("/admin")
-    );
+    setBtn(true);
+    APIAuth.login(form)
+      .then((res) => {
+        if (res.data.data.role_as == 0) {
+          navigate("/");
+        } else {
+          navigate("/admin");
+        }
+      })
+      .catch((err) => setError(err.message));
+    setBtn(false);
   };
+
   return (
     <div className="h-screen bg-yellow/30 flex items-center justify-center shadow-xl">
-      <div className="bg-white h-[80%] p-5 w-[70%] shadow-lg">
-        <div className="flex justify-center w-full h-full  items-center  ">
+      <div className="bg-white h-[90%] w-[80%] shadow-lg relative">
+        <span className="absolute right-0 p-3">
+          <TiArrowBack
+            onClick={() => navigate("/")}
+            className="text-3xl hover:text-yellow cursor-pointer transition-all duration-100 ease-linear  font-bold"
+          />{" "}
+        </span>
+        <div className="flex justify-center gap-x-3 w-full h-full  items-center  ">
           <div className="w-1/2 items-center h-full   flex justify-center">
-            <img className="h-[90%] w-[90%] " src={foto} alt="" />
+            <img className="h-full w-full  " src={foto} alt="" />
           </div>
 
-          <div className="w-1/2 flex flex-col justify-center">
-            <h1 className="font-bold text-2xl w-fullt text-center">Masuk</h1>
+          <div className="w-1/2 flex p-5 flex-col text-color2  h-full justify-center ">
+            <img className="h-14 mx-auto mb-10 " src={logo} alt="" />
+            <h1 className="font-bold  text-2xl w-fullt text-center">Masuk</h1>
+            <span className="text-color2  text-sm capitalize ">
+              {location.state}
+            </span>
 
             <form
               className="flex w-full  justify-center flex-col gap-4"
@@ -70,16 +96,20 @@ export const Login = () => {
                   onChange={onChange}
                 />
               </div>
-
+              <span className="text-sm text-red-600">{error}</span>
               <Button color="" className="w-full  btnbase" type="submit">
-                Login
+                {btn ? (
+                  <AiOutlineLoading3Quarters className="animate-spin" />
+                ) : (
+                  "Masuk"
+                )}
               </Button>
             </form>
             <p className="text-sm pt-2 capitalize">
               Belum mempunyai akun?{" "}
               <Link
                 to="/daftar"
-                className="underline cursor-pointer text-color2"
+                className="underline hover:text-yellow drop-shadow-lg transition-all duration-100 ease-linear cursor-pointer text-color2"
               >
                 Daftar sekarang
               </Link>
