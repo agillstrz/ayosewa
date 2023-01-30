@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import foto from "../assets/hero1.png";
 export const HeroKontrakan = () => {
-  const [icon, setIcon] = useState(null);
   return (
     <div className="bg-white   ">
       <div className="flex bg-white pt-28 content  pb-10 ">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Auth from "../../utils/Auth";
 import Sidebar from "./Sidebar";
 
 function LayoutAdmin() {
@@ -11,7 +12,7 @@ function LayoutAdmin() {
           <nav className="border w-full px-5">
             <ul className="flex py-3 w-full justify-end">
               <li className="flex flex-col">
-                <p>Admin Login</p>
+                <p>{Auth.isAuthorization() && Auth.getUserId()}</p>
                 <span className="text-[12px] opacity-90">Admin</span>
               </li>
             </ul>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import GetSewa from "../../apis/get.api";
 import { Card } from "../../components/Card";
 import { HeroKos } from "../../components/HeroKos";
+import GoToTop from "../../hooks/GoToTop";
 import datas from "../../mockup/dataRumah";
 
 export const Kos = () => {
@@ -23,6 +24,7 @@ export const Kos = () => {
           {data && data.data?.map((m) => <Card key={m.id} data={m} />)}
         </div>
       </div>
+      <GoToTop />
     </>
   );
 };

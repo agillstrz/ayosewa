@@ -24,6 +24,7 @@ const Auth = {
     const { token, data } = datas;
     Cookies.set("token", token);
     Cookies.set("role_as", data.role_as);
+    Cookies.set("sub", data.name);
     return datas;
   },
 };

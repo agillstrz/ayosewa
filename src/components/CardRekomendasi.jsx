@@ -1,6 +1,6 @@
 import { FormatRupiah } from "@arismun/format-rupiah";
 import { Carousel } from "flowbite-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaBath, FaBed, FaWifi } from "react-icons/fa";
@@ -8,32 +8,15 @@ import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import { VscLocation } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import PostSewa from "../apis/post.api";
+import { wishContext } from "../App";
 import Auth from "../utils/Auth";
 
 function CardRekomendasi({ data }) {
   const [sewa, setSewa] = useState(null);
-  const [message, setMessage] = useState("");
   const [icon, setIcon] = useState(false);
-  const addWish = (id) => {
-    PostSewa.addWish(id)
-      .then((res) =>
-        setMessage(res.data.message, {
-          iconTheme: {
-            primary: "#FFC600",
-          },
-        })
-      )
-      .catch((err) => console.log(err.message));
-  };
-
-  useEffect(() => {
-    if (message !== "" && message) {
-      toast.success(message);
-    }
-  }, [message]);
+  const { tambahData } = useContext(wishContext);
   return (
     <>
-      <Toaster />
       <div className=" shadow-lg h-[21rem] z-0 w-[22rem] mb-7 rounded-lg flex flex-col justify-between  cursor-pointer">
         <div className="h-[70%] ">
           <Carousel leftControl=" " rightControl=" " indicators={false}>
@@ -52,7 +35,7 @@ function CardRekomendasi({ data }) {
               className="rounded-lg text-xl "
               onClick={() =>
                 Auth.isAuthorization()
-                  ? addWish(data.id)
+                  ? tambahData(data.id)
                   : toast.error("anda harus login terlebih dahulu")
               }
             >

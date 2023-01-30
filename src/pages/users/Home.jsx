@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoIosArrowDropright } from "react-icons/io";
+import { wishContext } from "../../App";
 import Hero from "../../components/Hero";
 import Rekomendasi from "../../components/Rekomendasi";
 import Slogan from "./Slogan";
@@ -10,9 +11,11 @@ export const Home = () => {
     tiga: false,
     empat: false,
   });
+
   return (
     <div>
       <Hero />
+
       <Rekomendasi />
       <Slogan />
       <div className="content my-5">

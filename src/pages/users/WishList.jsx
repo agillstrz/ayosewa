@@ -1,10 +1,14 @@
 import { FormatRupiah } from "@arismun/format-rupiah";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { TiDelete } from "react-icons/ti";
 import { VscLocation } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 import SEWA from "../../apis/get.api";
 import PostSewa from "../../apis/post.api";
+import { wishContext } from "../../App";
+import GoToTop from "../../hooks/GoToTop";
 
 function WishList() {
   const [data, setData] = useState([]);
@@ -19,6 +23,7 @@ function WishList() {
       .then((res) => setMessage(res.data.message))
       .catch((err) => console.log(err));
   };
+  const { setCount } = useContext(wishContext);
 
   useEffect(() => {
     getWish();
@@ -35,8 +40,13 @@ function WishList() {
     <>
       <Toaster />
       <div className="content min-h-screen pt-24 flex flex-col items-center">
+        {data && (
+          <h4 className="font-bold text-2xl">jumlah wishlist {data?.count}</h4>
+        )}
+        {data && setCount(data.count)}
         {data.data?.map((m) => (
-          <div
+          <Link
+            to={`/detail/${m.sewa.id}`}
             key={m.id}
             className="flex relative w-[80%] cursor-pointer bg-white gap-x-4  border  hover:border-yellow hover:z-50 p-5 transition-all duration-100 ease-linear"
           >
@@ -61,9 +71,10 @@ function WishList() {
                 {m.sewa.alamat}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
+      <GoToTop />
     </>
   );
 }

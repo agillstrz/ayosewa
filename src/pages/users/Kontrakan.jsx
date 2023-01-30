@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import GetSewa from "../../apis/get.api";
 import { Card } from "../../components/Card";
 import { HeroKontrakan } from "../../components/HeroKontrakan";
+import GoToTop from "../../hooks/GoToTop";
 export const Kontrakan = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
@@ -22,7 +23,7 @@ export const Kontrakan = () => {
           {data && data.data?.map((m) => <Card key={m.id} data={m} />)}
         </div>
       </div>
-      ;
+      <GoToTop />
     </>
   );
 };

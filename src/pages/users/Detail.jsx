@@ -1,12 +1,18 @@
 import { FormatRupiah } from "@arismun/format-rupiah";
 import { Avatar, TextInput } from "flowbite-react";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { toast, Toaster } from "react-hot-toast";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaBath, FaPlay, FaWifi } from "react-icons/fa";
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import { VscLocation } from "react-icons/vsc";
 import { useParams } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
 import SEWA from "../../apis/get.api";
+import { wishContext } from "../../App";
+import GoToTop from "../../hooks/GoToTop";
+import Auth from "../../utils/Auth";
 import ModalVideo from "./ModalVideo";
 export const Detail = () => {
   const { id } = useParams();
@@ -15,7 +21,7 @@ export const Detail = () => {
   const [show, setShow] = useState(false);
   const [load, setLoad] = useState(false);
   const [img, setImg] = useState(null);
-
+  const { tambahData } = useContext(wishContext);
   const detail = () => {
     try {
       setLoad(true);
@@ -99,11 +105,15 @@ export const Detail = () => {
                         : "Ruko"}
                     </button>
                     <button
-                      className="  rounded-lg text-xl "
-                      onClick={() => setIcon(!icon)}
+                      className="rounded-lg text-xl "
+                      onClick={() =>
+                        Auth.isAuthorization()
+                          ? tambahData(data.id)
+                          : toast.error("anda harus login terlebih dahulu")
+                      }
                     >
                       <MdOutlineFavorite
-                        className={`${icon ? "text-red-600" : "hidden"}`}
+                        className={`${icon ? "text-red-600 " : "hidden"}`}
                       />
                       <MdOutlineFavoriteBorder
                         className={`${icon ? "hidden" : "hover:text-red-600"}`}
@@ -122,7 +132,7 @@ export const Detail = () => {
                   </div>
                   <div>
                     <h4 className="text-color2 font-semibold text-lg">
-                      Fasilitas Kontrakan
+                      Fasilitas
                     </h4>
                     <div className="flex w-full flex-wrap gap-y-1  gap-x-2">
                       {data.kmandi && (
@@ -206,14 +216,14 @@ export const Detail = () => {
                     <div className="w-[30%]">
                       <div className="flex flex-wrap gap-2">
                         <Avatar
-                          img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                          img="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
                           rounded={true}
                           size="lg"
                         />
                       </div>
                     </div>
                     <div className="w-[70%] text-md text-colo2">
-                      <p className="font-semibold">Muhammad Agil</p>
+                      <p className="font-semibold">Erin</p>
                       <p className="text-sm opacity-80">Pemilik Website</p>
                     </div>
                   </div>
@@ -222,9 +232,13 @@ export const Detail = () => {
                       <AiOutlineWhatsApp /> 082281788810
                     </button>
                     <div className="w-1/2 flex justify-center">
-                      <button className="py-2 px-3 bg-yellow rounded-lg text-color2 hover:bg-color2 hover:text-white font-semibold text-[14px] flex items-center gap-x-1">
+                      <a
+                        href={`https://api.whatsapp.com/send?phone=6282281788810&text=Hallo%20saya%20ingin%20menyewa%20${data.name}`}
+                        target={"_blank"}
+                        className="py-2 px-3 bg-yellow rounded-lg text-color2 hover:bg-color2 hover:text-white font-semibold text-[14px] flex items-center gap-x-1"
+                      >
                         <AiOutlineWhatsApp /> Whatshapp
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -243,6 +257,8 @@ export const Detail = () => {
           </div>
         </>
       )}
+      {/* <ScrollToTop smooth /> */}
+      <GoToTop />
     </>
   );
 };

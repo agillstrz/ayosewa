@@ -1,14 +1,17 @@
 import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { MdFavoriteBorder, MdOutlineFavoriteBorder } from "react-icons/md";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { wishContext } from "../App";
 import datas from "../mockup/dataRumah";
+import Auth from "../utils/Auth";
 
 function Search({ scroll }) {
   const [name, setName] = useState("");
   let location = useLocation();
-  console.log(location.pathname);
   let navigate = useNavigate();
+  const { count } = useContext(wishContext);
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search/${name}`);
@@ -68,50 +71,14 @@ function Search({ scroll }) {
               to="/wish"
               className="text-3xl group cursor-pointer relative"
             >
-              <MdFavoriteBorder className="group-hover:text-yellow transition-all duration-100 ease-linear" />
-              <span className="absolute top-[10px] right-0 text-[10px] text-color2">
-                1
-              </span>
-              {/* <div
-                className={`
-               w-56  border bg-white invisible group-hover:visible borders z-[9999] flex flex-col gap-y-2   absolute p-2 right-4 top-7  `}
-              >
-                <div className="flex items-center hover:bg-yellow hover:font-semibold  gap-x-1 border">
-                  <div className="w-[25%]  ">
-                    <img className="h-8" src={datas[0].foto1} alt="" />
-                  </div>
-                  <div className="w-[65%] ">
-                    <p className="text-[13px]">Kontrakan rainbow</p>
-                  </div>
-                </div>
-                <div className="flex items-center  gap-x-1 border">
-                  <div className="w-[25%]  ">
-                    <img className="h-8" src={datas[0].foto1} alt="" />
-                  </div>
-                  <div className="w-[65%] ">
-                    <p className="text-[13px]">Kontrakan rainbow</p>
-                  </div>
-                </div>
-                <div className="flex items-center  gap-x-1 border">
-                  <div className="w-[25%]  ">
-                    <img className="h-8" src={datas[0].foto1} alt="" />
-                  </div>
-                  <div className="w-[65%] ">
-                    <p className="text-[13px]">Kontrakan rainbow</p>
-                  </div>
-                </div>
-                <div className="flex items-center  gap-x-1 border">
-                  <div className="w-[25%]  ">
-                    <img className="h-8" src={datas[0].foto1} alt="" />
-                  </div>
-                  <div className="w-[65%] ">
-                    <p className="text-[13px]">Kontrakan rainbow</p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-center  gap-x-1 border">
-                  <p className="text-sm text-color2">Lihat Lebih banyak</p>
-                </div>
-              </div> */}
+              {Auth.isAuthorization() && (
+                <>
+                  <MdFavoriteBorder className="group-hover:text-yellow transition-all duration-100 ease-linear" />
+                  <span className="absolute top-[10px] right-0 text-[10px] text-color2">
+                    {count}
+                  </span>
+                </>
+              )}
             </NavLink>
           </div>
         </div>

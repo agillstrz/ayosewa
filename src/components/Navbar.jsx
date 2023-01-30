@@ -1,5 +1,5 @@
 import { Avatar, Dropdown } from "flowbite-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import Search from "./Search";
@@ -8,11 +8,12 @@ import sewa from "../assets/ayosewa.png";
 import logo from "../assets/logo1.png";
 import Auth from "../utils/Auth";
 import GetSewa from "../apis/get.api";
+import { wishContext } from "../App";
 function Navbar() {
   let navigate = useNavigate();
   const [scroll, setScroll] = useState(false);
   const [show, setShow] = useState(false);
-
+  const { count } = useContext(wishContext);
   const handleLogout = (e) => {
     e.preventDefault();
     Auth.signOut(navigate);
@@ -96,56 +97,13 @@ function Navbar() {
               >
                 <MdFavorite className="group-hover:text-yellow transition-all duratnavion-100 ease-linear" />
                 <span className="absolute top-[10px] right-0 text-[10px] text-color2">
-                  1
+                  {count}
                 </span>
-                {/* <div
-                  className={`
-               w-56  border bg-white invisible group-hover:visible  z-[9999] flex flex-col gap-y-2   absolute p-2 right-4 top-7  `}
-                >
-                  <div className="flex items-center hover:bg-yellow hover:font-semibold  gap-x-1 border">
-                    <div className="w-[25%]  ">
-                      <img className="h-8" src={datas[0].foto1} alt="" />
-                    </div>
-                    <div className="w-[65%] ">
-                      <p className="text-[13px]">Kontrakan rainbow</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center  gap-x-1 border">
-                    <div className="w-[25%]  ">
-                      <img className="h-8" src={datas[0].foto1} alt="" />
-                    </div>
-                    <div className="w-[65%] ">
-                      <p className="text-[13px]">Kontrakan rainbow</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center  gap-x-1 border">
-                    <div className="w-[25%]  ">
-                      <img className="h-8" src={datas[0].foto1} alt="" />
-                    </div>
-                    <div className="w-[65%] ">
-                      <p className="text-[13px]">Kontrakan rainbow</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center  gap-x-1 border">
-                    <div className="w-[25%]  ">
-                      <img className="h-8" src={datas[0].foto1} alt="" />
-                    </div>
-                    <div className="w-[65%] ">
-                      <p className="text-[13px]">Kontrakan rainbow</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center  gap-x-1 border">
-                    <p className="text-sm text-color2">Lihat Lebih banyak</p>
-                  </div>
-                </div> */}
               </NavLink>
 
               <div className="space-y-1 relative  w-full  font-medium dark:text-white ">
-                <div
-                  className="cursor-pointer px-10"
-                  onClick={() => setShow(!show)}
-                >
-                  user login
+                <div className="cursor-pointer " onClick={() => setShow(!show)}>
+                  {Auth.isAuthorization() && Auth.getUserId()}
                 </div>
                 <div
                   className={`${
@@ -173,7 +131,7 @@ function Navbar() {
             </>
           ) : (
             <li className="flex items-center gap-x-2 font-semibold">
-              <Link to="/login">Daftar</Link>
+              <Link to="/daftar">Daftar</Link>
               <Link to="/login" className="p-1 rounded-lg bg-yellow text-white">
                 Masuk
               </Link>

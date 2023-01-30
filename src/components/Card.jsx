@@ -1,38 +1,22 @@
 import { FormatRupiah } from "@arismun/format-rupiah";
-import { Carousel, Toast } from "flowbite-react";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import { Carousel } from "flowbite-react";
+import React, { useContext, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { AiOutlineStar, AiOutlineWhatsApp } from "react-icons/ai";
-import { FaBath, FaBed, FaWifi, FaWineGlassAlt } from "react-icons/fa";
+import { AiOutlineWhatsApp } from "react-icons/ai";
+import { FaBath, FaBed, FaWifi } from "react-icons/fa";
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import { VscLocation } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-import PostSewa from "../apis/post.api";
+import { wishContext } from "../App";
 import Auth from "../utils/Auth";
 
 export const Card = ({ data }) => {
   const [sewa, setSewa] = useState(null);
-  const [message, setMessage] = useState("");
   const [icon, setIcon] = useState(false);
-  const addWish = (id) => {
-    PostSewa.addWish(id)
-      .then((res) => setMessage(res.data.message))
-      .catch((err) => console.log(err.message));
-  };
+  const { tambahData } = useContext(wishContext);
 
-  useEffect(() => {
-    if (message !== "" && message) {
-      toast.success(message, {
-        iconTheme: {
-          primary: "#FFC600",
-        },
-      });
-    }
-  }, [message]);
   return (
     <>
-      <Toaster />
       <div className=" shadow-lg h-[21rem] z-0 w-[22rem] mb-7 rounded-lg flex flex-col justify-between  cursor-pointer">
         <div className="h-[70%] ">
           <Carousel indicators={false} slide={false}>
@@ -51,7 +35,7 @@ export const Card = ({ data }) => {
               className="rounded-lg text-xl "
               onClick={() =>
                 Auth.isAuthorization()
-                  ? addWish(data.id)
+                  ? tambahData(data.id)
                   : toast.error("anda harus login terlebih dahulu")
               }
             >
@@ -109,9 +93,13 @@ export const Card = ({ data }) => {
           </div>
         </div>
         <div className="flex w-full justify-end  p-3">
-          <button className="py-2 px-3 bg-yellow rounded-lg text-color2 hover:bg-color2 hover:text-white font-semibold text-[14px] flex items-center gap-x-1 transition-all duration-150 ease-linear">
+          <a
+            href={`https://api.whatsapp.com/send?phone=6282281788810&text=Hallo%20saya%20ingin%20menyewa%20${data.name}`}
+            target={"_blank"}
+            className="py-2 px-3 bg-yellow rounded-lg text-color2 hover:bg-color2 hover:text-white font-semibold text-[14px] flex items-center gap-x-1 transition-all duration-150 ease-linear"
+          >
             <AiOutlineWhatsApp className="text-lg" /> Whatshapp
-          </button>
+          </a>
         </div>
       </div>
     </>

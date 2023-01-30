@@ -1,15 +1,10 @@
-import { Pagination, Spinner } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import { Toaster } from "react-hot-toast";
 import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
   AiOutlineLoading3Quarters,
 } from "react-icons/ai";
-import { GrFormNextLink, GrLinkNext } from "react-icons/gr";
-import { GiNextButton } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
 import GetSewa from "../../apis/get.api";
 import { Card } from "../../components/Card";
 import { useDebounce } from "../../hooks/searching";
@@ -23,10 +18,12 @@ function Sewa() {
   const [text] = useDebounce(700, _text);
   const getSewa = () => {
     setLoad(true);
-    GetSewa.allSewa(text, page).then((res) => {
-      setDatas(res.data.data);
-      setLoad(false);
-    });
+    GetSewa.allSewa(text, page)
+      .then((res) => {
+        setDatas(res.data.data);
+        setLoad(false);
+      })
+      .catch((err) => console.log(err));
   };
   useEffect(() => {
     getSewa();
@@ -41,10 +38,9 @@ function Sewa() {
   }
   return (
     <>
-      <Toaster />
       <div className="content min-h-screen pt-24">
         <h2 className="text-center font-bold drop-shadow-lg">
-          Sewa semuanya di sewa<span className="text-yellow">rent</span>
+          Sewa semuanya di ayo<span className="text-yellow">Sewa</span>
         </h2>
         <div className="flex w-full justify-center my-3">
           <input
@@ -56,15 +52,7 @@ function Sewa() {
             value={_text}
           />
         </div>
-
-        {/* {data?.data == "" && (
-        <>
-          <span className="flex items-center gap-x-1 text-color2">
-            <FaSearch className="text-yellow" /> tidak ditemukan....
-          </span>
-        </>
-      )} */}
-        {data.data == "" ? (
+        {!data.data ? (
           <>
             <span className="flex items-center text-color2 gap-x-1">
               <FaSearch /> tidak ditemukan....

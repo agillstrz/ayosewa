@@ -14,7 +14,7 @@ function Footers() {
             ayo<span className="text-yellow">Sewa</span>
           </span>
         </a>
-        <ul className="flex flex-wrap items-center mb-6 text-sm sm:mb-0 ">
+        {/* <ul className="flex flex-wrap items-center mb-6 text-sm sm:mb-0 ">
           <li>
             <a href="#" className="mr-4 hover:underline md:mr-6 ">
               About
@@ -35,7 +35,7 @@ function Footers() {
               Contact
             </a>
           </li>
-        </ul>
+        </ul> */}
       </div>
       <hr className="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
       <span className="block text-sm text-color2 sm:text-center ">

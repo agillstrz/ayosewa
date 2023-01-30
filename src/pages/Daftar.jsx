@@ -40,7 +40,7 @@ export const Daftar = () => {
   return (
     <div className="h-screen bg-yellow/30 flex items-center justify-center shadow-xl">
       <div className="bg-white  h-[90%] w-[80%] shadow-lg relative">
-        <span className="absolute right-0 p-3">
+        <span onClick={() => navigate("/")} className="absolute right-0 p-3">
           <TiArrowBack className="text-3xl hover:text-yellow cursor-pointer transition-all duration-100 ease-linear  font-bold" />{" "}
         </span>
         <div className="flex justify-center gap-x-3 w-full h-full  items-center  ">
