@@ -33,8 +33,10 @@ export const Daftar = () => {
         setBtn(false);
         navigate("/login", { state: res.data.message });
       })
-      .catch((err) => setError(err.message));
-    setBtn(false);
+      .catch((err) => {
+        setError(err.message);
+        setBtn(false);
+      });
   };
 
   return (

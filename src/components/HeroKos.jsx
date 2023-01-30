@@ -9,7 +9,7 @@ export const HeroKos = () => {
           <img src={foto} alt="" />
         </div>
         <div className="w-1/2 h-full text-color2   ">
-          <h1 className="">Cari kossan Sekarang</h1>
+          <h1 className="">Cari kos-kosan Sekarang</h1>
         </div>
       </div>
     </div>

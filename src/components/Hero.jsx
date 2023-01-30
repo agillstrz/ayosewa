@@ -6,11 +6,11 @@ import foto from "../assets/hero1.png";
 function Hero() {
   return (
     <div className="bg-white h-screen  ">
-      <div className="flex bg-white h-full pt-28 content mx-20  pb-10 ">
-        <div className="w-1/2 h-full ">
+      <div className="flex bg-white h-full pt-28  content mx-20  pb-10 ">
+        <div className="lg:w-1/2 w-full  h-full ">
           <div className="text-color2 flex justify-center w-full   font-semibold ">
             <div>
-              <p className="text-8xl ">Ayo Sewa</p>
+              <p className="lg:text-8xl text-6xl ">Ayo Sewa</p>
               <p className="text-3xl">
                 <TypeAnimation
                   className="py-10"
@@ -36,7 +36,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="w-1/2  h-full flex ">
+        <div className="w-1/2 hidden h-full lg:flex ">
           <img src={foto} alt="" />
         </div>
       </div>

@@ -13,7 +13,8 @@ function ModalTambah({ show, close, setShow, setMessage }) {
     tersedia: true,
     rekomendasi: false,
     alamat: "",
-    link_alamat: "",
+    link_alamat:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15860.64130069158!2d106.83375742304688!3d-6.373292864783835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ebf2ffffffff%3A0x9214853a449aafcb!2sKFC%20Margonda%20-%20Raya!5e0!3m2!1sid!2sid!4v1674369024714!5m2!1sid!2sid",
     link_video: "",
     deskripsi: "",
     foto1: "",

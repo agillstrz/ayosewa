@@ -17,7 +17,7 @@ export const Card = ({ data }) => {
 
   return (
     <>
-      <div className=" shadow-lg h-[21rem] z-0 w-[22rem] mb-7 rounded-lg flex flex-col justify-between  cursor-pointer">
+      <div className=" shadow-lg lg:h-[21rem] h-[16rem]  w-full z-0 lg:w-[22rem] mb-7 rounded-lg flex flex-col justify-between  cursor-pointer">
         <div className="h-[70%] ">
           <Carousel indicators={false} slide={false}>
             <img className="h-full w-full " src={data?.foto1} alt="..." />
@@ -26,7 +26,7 @@ export const Card = ({ data }) => {
           </Carousel>
         </div>
 
-        <div className="text-color2 h-[30%] p-3">
+        <div className="text-color2 h-[30%] lg:p-3 px-2">
           <div className="flex w-full  justify-between">
             <button className="p-1 bg-base2 capitalize rounded-lg text-[12px]">
               {data.kategori?.name}

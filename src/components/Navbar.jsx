@@ -1,14 +1,10 @@
-import { Avatar, Dropdown } from "flowbite-react";
 import React, { useContext, useEffect, useState } from "react";
+import { MdFavorite } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import Search from "./Search";
-import datas from "../mockup/dataRumah";
-import sewa from "../assets/ayosewa.png";
-import logo from "../assets/logo1.png";
-import Auth from "../utils/Auth";
-import GetSewa from "../apis/get.api";
 import { wishContext } from "../App";
+import sewa from "../assets/ayosewa.png";
+import Auth from "../utils/Auth";
+import Search from "./Search";
 function Navbar() {
   let navigate = useNavigate();
   const [scroll, setScroll] = useState(false);
@@ -21,6 +17,11 @@ function Navbar() {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       window.pageYOffset > 0 ? setScroll(true) : setScroll(false);
+    });
+  });
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setShow(false);
     });
   });
 
@@ -88,7 +89,7 @@ function Navbar() {
             </NavLink>
           </li>
         </ul>
-        <div className="flex items-center gap-x-3">
+        <div className="flex items-center gap-x-3  px-10">
           {Auth.isAuthorization() ? (
             <>
               <NavLink
@@ -102,7 +103,10 @@ function Navbar() {
               </NavLink>
 
               <div className="space-y-1 relative  w-full  font-medium dark:text-white ">
-                <div className="cursor-pointer " onClick={() => setShow(!show)}>
+                <div
+                  className="cursor-pointer capitalize "
+                  onClick={() => setShow(!show)}
+                >
                   {Auth.isAuthorization() && Auth.getUserId()}
                 </div>
                 <div
@@ -114,15 +118,12 @@ function Navbar() {
                     {Auth.getRole() == 1 && (
                       <li
                         onClick={() => navigate("/admin")}
-                        className="hover:bg-base2 cursor-pointer"
+                        className=" cursor-pointer"
                       >
                         Dashboard
                       </li>
                     )}
-                    <li
-                      onClick={handleLogout}
-                      className="hover:bg-base2 cursor-pointer"
-                    >
+                    <li onClick={handleLogout} className=" cursor-pointer">
                       Logout
                     </li>
                   </ul>

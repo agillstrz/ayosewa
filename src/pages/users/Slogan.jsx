@@ -9,7 +9,7 @@ function Slogan() {
       <h2 className="text-3xl text-center font-bold text-color2 my-2 ">
         Kenapa ayo<span className="text-yellow">Sewa</span>?
       </h2>
-      <div className="grid grid-cols-4 place-items-center">
+      <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-y-0 gap-y-2 place-items-center">
         <div className="w-64 p-4 h-64 rounded-lg  flex flex-col items-center justify-center bg-yellow/30 shadow-lg">
           <p className="text-2xl text-center font-semibold">Cepat</p>
           <img className="h-36  p-4" src={fast} alt="" />

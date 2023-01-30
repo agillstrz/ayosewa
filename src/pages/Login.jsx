@@ -32,12 +32,15 @@ export const Login = () => {
       .then((res) => {
         if (res.data.data.role_as == 0) {
           navigate("/");
+          setBtn(false);
         } else {
           navigate("/admin");
         }
       })
-      .catch((err) => setError(err.message));
-    setBtn(false);
+      .catch((err) => {
+        setError(err.message);
+        setBtn(false);
+      });
   };
 
   return (
@@ -57,7 +60,7 @@ export const Login = () => {
           <div className="w-1/2 flex p-5 flex-col text-color2  h-full justify-center ">
             <img className="h-14 mx-auto mb-10 " src={logo} alt="" />
             <h1 className="font-bold  text-2xl w-fullt text-center">Masuk</h1>
-            <span className="text-color2  text-sm capitalize ">
+            <span className="text-color2 w-36  text-sm capitalize bg-yellow  rounded-lg px-1 ">
               {location.state}
             </span>
 

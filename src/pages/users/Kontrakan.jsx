@@ -19,7 +19,7 @@ export const Kontrakan = () => {
     <>
       <HeroKontrakan />
       <div className="content">
-        <div className="grid grid-cols-3 place-items-center">
+        <div className="grid lg:grid-cols-3 grid-cols-1 place-items-center">
           {data && data.data?.map((m) => <Card key={m.id} data={m} />)}
         </div>
       </div>

@@ -6,7 +6,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaBath, FaPlay, FaWifi } from "react-icons/fa";
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import { VscLocation } from "react-icons/vsc";
+import { VscLocation, VscSymbolField } from "react-icons/vsc";
 import { useParams } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 import SEWA from "../../apis/get.api";
@@ -189,6 +189,17 @@ export const Detail = () => {
                           </div>
                         </div>
                       )}
+                      {data.luas && (
+                        <div className="cardF">
+                          <p className="text-color1/80">Luas</p>
+                          <div className="flex gap-x-2 text-md items-center">
+                            <VscSymbolField />
+                            <span>
+                              {data.luas}m<sup>2</sup>
+                            </span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -239,16 +250,6 @@ export const Detail = () => {
                       >
                         <AiOutlineWhatsApp /> Whatshapp
                       </a>
-                    </div>
-                  </div>
-                </div>
-                <div className=" w-[80%] p-3   bg-white border shadow-lg">
-                  <div className=" w-full">
-                    <h4 className="text-lg font-semibold">Email</h4>
-                    <div className="flex flex-col gap-4">
-                      <div>
-                        <TextInput id="small" type="text" sizing="sm" />
-                      </div>
                     </div>
                   </div>
                 </div>

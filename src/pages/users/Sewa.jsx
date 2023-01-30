@@ -46,7 +46,7 @@ function Sewa() {
           <input
             type="search"
             id="default-search"
-            className="block w-[40%] p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block lg:w-[40%] w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Cari sewa"
             onChange={(e) => setText(e.target.value)}
             value={_text}
@@ -61,7 +61,7 @@ function Sewa() {
         ) : (
           ""
         )}
-        <div className="grid grid-cols-3 mt-5 place-items-center">
+        <div className="grid lg:grid-cols-3 grid-cols-1 mt-5 place-items-center">
           {data?.data?.map((m) => (
             <Card key={m.id} data={m} />
           ))}
