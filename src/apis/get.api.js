@@ -11,6 +11,7 @@ const GetSewa = {
       console.log("error");
     }
   },
+
   async Rekomendasi() {
     try {
       const response = await axiosInstance.get("rekomendasi");

@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 import foto from "../assets/hero1.png";
 function Hero() {
   return (
-    <div className="bg-white h-screen  ">
+    <div className="bg-white h-screen">
       <div className="flex bg-white h-full pt-28  content mx-20  pb-10 ">
         <div className="lg:w-1/2 w-full  h-full ">
           <div className="text-color2 flex justify-center w-full   font-semibold ">
@@ -35,7 +35,6 @@ function Hero() {
             </div>
           </div>
         </div>
-
         <div className="w-1/2 hidden h-full lg:flex ">
           <img src={foto} alt="" />
         </div>

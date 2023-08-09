@@ -45,7 +45,7 @@ function Rekomendasi() {
         >
           {data &&
             data?.map((m) => (
-              <SwiperSlide className="p-2 " key={m.id}>
+              <SwiperSlide className="p-2" key={m.id}>
                 <CardRekomendasi data={m} />
               </SwiperSlide>
             ))}

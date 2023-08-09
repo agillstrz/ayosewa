@@ -5,7 +5,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaBath, FaBed, FaWifi } from "react-icons/fa";
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import { VscLocation } from "react-icons/vsc";
+import { VscLocation, VscSymbolField } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { wishContext } from "../App";
 import Auth from "../utils/Auth";
@@ -61,35 +61,42 @@ export const Card = ({ data }) => {
             </span>
           </Link>
           <div className="flex items-center  mt-2 gap-x-2 text-[15px]">
-            <div className="flex items-center gap-x-1">
-              {data.kmandi ? (
+            {data.kmandi ? (
+              <div className="flex items-center gap-x-1">
                 <>
                   <FaBath /> {data.kmandi}
                 </>
-              ) : (
-                ""
-              )}
-            </div>
-            <div className="flex items-center gap-x-1">
-              {data.wifi ? (
+              </div>
+            ) : (
+              ""
+            )}
+            {data.wifi ? (
+              <div className="flex items-center gap-x-1">
                 <>
-                  <FaWifi />
-                  {data.wifi}
+                  <FaWifi /> {data.wifi}
                 </>
-              ) : (
-                ""
-              )}
-            </div>
-            <div className="flex items-center gap-x-1">
-              {" "}
-              {data.ktidur ? (
+              </div>
+            ) : (
+              ""
+            )}
+            {data.ktidur ? (
+              <div className="flex items-center gap-x-1">
                 <>
                   <FaBed /> {data.ktidur}
                 </>
-              ) : (
-                ""
-              )}
-            </div>
+              </div>
+            ) : (
+              ""
+            )}
+            {data.luas ? (
+              <div className="flex items-center gap-x-1">
+                <>
+                  <VscSymbolField /> {data.luas}m<sup>2</sup>
+                </>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="flex w-full justify-end  p-3">

@@ -1,10 +1,10 @@
-import { Modal } from "flowbite-react";
+import { Carousel, Modal } from "flowbite-react";
 import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
 import React from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import ReactPlayer from "react-player";
 
-function ModalVideo({ show, setShow, link }) {
+function ModalVideo({ show, setShow, foto1 }) {
   return (
     <React.Fragment>
       <Modal className="z-[9999] " size="8xl" show={show}>
@@ -14,14 +14,8 @@ function ModalVideo({ show, setShow, link }) {
         >
           <AiFillCloseCircle className="text-4xl" />
         </span>
-        <ModalBody className="h-[33rem] flex items-center">
-          <ReactPlayer
-            width="100%"
-            height="100%"
-            controls={true}
-            playing={true}
-            url={link}
-          />
+        <ModalBody className="h-[33rem] ">
+          <img className="w-full h-full" src={foto1} alt="" />
         </ModalBody>
       </Modal>
     </React.Fragment>

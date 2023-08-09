@@ -1,13 +1,12 @@
 import { FormatRupiah } from "@arismun/format-rupiah";
 import { Carousel } from "flowbite-react";
-import React, { useContext, useEffect, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
+import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { FaBath, FaBed, FaWifi } from "react-icons/fa";
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import { VscLocation } from "react-icons/vsc";
+import { VscLocation, VscSymbolField } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-import PostSewa from "../apis/post.api";
 import { wishContext } from "../App";
 import Auth from "../utils/Auth";
 
@@ -85,6 +84,16 @@ function CardRekomendasi({ data }) {
               {data.ktidur ? (
                 <>
                   <FaBed /> {data.ktidur}
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="flex items-center gap-x-1">
+              {" "}
+              {data.luas ? (
+                <>
+                  <VscSymbolField /> {data.luas}m<sup>2</sup>
                 </>
               ) : (
                 ""

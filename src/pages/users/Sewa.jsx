@@ -7,6 +7,7 @@ import {
 import { FaSearch } from "react-icons/fa";
 import GetSewa from "../../apis/get.api";
 import { Card } from "../../components/Card";
+import GoToTop from "../../hooks/GoToTop";
 import { useDebounce } from "../../hooks/searching";
 
 function Sewa() {
@@ -102,6 +103,7 @@ function Sewa() {
           </div>
         )}
       </div>
+      <GoToTop />
     </>
   );
 }
